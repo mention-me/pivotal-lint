@@ -123,7 +123,7 @@ async function run() {
       const labels: string[] = filterArray([podLabel, hotfixLabel, storyTypeLabel]);
 
       console.log('Project name -> ', projectName);
-      console.log('Adding lables -> ', labels);
+      console.log('Adding labels -> ', labels);
 
       const labelData: IssuesAddLabelsParams = {
         ...commonPayload,
@@ -132,6 +132,7 @@ async function run() {
 
       await addLabels(client, labelData);
 
+      console.log('should Update PR description', shouldUpdatePRDescription(prBody));
       if (shouldUpdatePRDescription(prBody)) {
         const prData: PullsUpdateParams = {
           owner,
