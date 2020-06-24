@@ -132,7 +132,6 @@ async function run() {
 
       await addLabels(client, labelData);
 
-      console.log('should Update PR description', shouldUpdatePRDescription(prBody));
       if (shouldUpdatePRDescription(prBody)) {
         const prData: PullsUpdateParams = {
           owner,
