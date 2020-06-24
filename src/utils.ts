@@ -281,9 +281,9 @@ const getStoryIcon = (storyType: string): string => {
 
 const getPivotalReviewReminders = (reviews: Review[], memberships: PivotalProjectMembership[]): string[] => {
   return reviews.map((review) => {
-    const person = memberships.filter(member => member.person.id && member.person.id === review.reviewer_id);
+    const member = memberships.find(member => member.person.id && member.person.id === review.reviewer_id);
 
-    return `[ ] ${review.review_type.name} ${person ? '(' + person  + ')': ''}`;
+    return `- [ ] ${review.review_type.name} ${member && member.person && member.person.name ? `(${member.person.name})`: ''}`;
   });
 }
 
