@@ -394,13 +394,13 @@ export const getPrDescription = (
 </details>
 <br />
 
-${reviews.length > 0 && `<details open>
+${reviews.length > 0 ? `<details open>
   <summary><strong>Pivotal Review</strong></summary>
   <br />
   
   ${getPivotalReviewReminders(reviews, memberships).join('\r\n')}
 </details>
-<br />`}
+<br />` : ''}
 
 <details>
   <summary><strong>Pivotal Description</strong></summary>
