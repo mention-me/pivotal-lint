@@ -104,10 +104,17 @@ async function run() {
 
     const { getPivotalDetails } = pivotal(PIVOTAL_TOKEN);
     const pivotalDetails: PivotalDetails = await getPivotalDetails(pivotalId);
-    if (pivotalDetails && pivotalDetails.project && pivotalDetails.story) {
+    if (
+        pivotalDetails && pivotalDetails.project &&
+        pivotalDetails.story &&
+        pivotalDetails.reviews &&
+        pivotalDetails.memberships
+    ) {
       const {
         project: { name: projectName },
         story,
+        reviews,
+        memberships
       } = pivotalDetails;
 
       const podLabel: string = getPodLabel(projectName);
@@ -116,7 +123,7 @@ async function run() {
       const labels: string[] = filterArray([podLabel, hotfixLabel, storyTypeLabel]);
 
       console.log('Project name -> ', projectName);
-      console.log('Adding lables -> ', labels);
+      console.log('Adding labels -> ', labels);
 
       const labelData: IssuesAddLabelsParams = {
         ...commonPayload,
@@ -130,7 +137,7 @@ async function run() {
           owner,
           repo,
           pull_number: prNumber,
-          body: getPrDescription(prBody, story),
+          body: getPrDescription(prBody, story, reviews, memberships),
         };
         await updatePrDetails(client, prData);
 

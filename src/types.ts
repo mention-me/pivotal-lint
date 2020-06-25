@@ -25,6 +25,11 @@ export interface Label {
   name: string;
 }
 
+export interface Person {
+  id: number;
+  name: string;
+}
+
 export const enum StoryState {
   Accepted = 'accepted',
   Delivered = 'delivered',
@@ -34,6 +39,19 @@ export const enum StoryState {
   Started = 'started',
   Unscheduled = 'unscheduled',
   Unstarted = 'unstarted',
+}
+
+export interface ReviewType {
+  id: number;
+  name: string;
+  hidden: boolean;
+}
+
+export interface Review {
+  id: number;
+  review_type: ReviewType;
+  reviewer_id: number;
+  status: string;
 }
 
 export interface PivotalStory {
@@ -93,7 +111,14 @@ export interface PivotalProjectResponse {
   week_start_day: 'Monday' | 'Tuesday' | 'Wednesday' | 'Thursday' | 'Friday' | 'Saturday' | 'Sunday';
 }
 
+export interface PivotalProjectMembership {
+  id: number;
+  person: Person;
+}
+
 export interface PivotalDetails {
   story: PivotalStory;
   project: PivotalProjectResponse;
+  reviews: Review[];
+  memberships: PivotalProjectMembership[];
 }
