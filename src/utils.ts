@@ -217,7 +217,7 @@ export const getPrTitleComment = (storyTitle: string, prTitle: string): string =
   <img src="https://media.giphy.com/media/XreQmk7ETCak0/giphy.gif" width="400" />`;
 };
 
-/** swz
+/**
  * Remove invalid entries from an array
  * @param {Array} arr
  */
